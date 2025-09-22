@@ -468,8 +468,9 @@ def train_test(
             overall_performance = {'test point':'All test points', 'model name':'-', 'history length' : '-',
                                    'feature or covariate set':'-'}
             for i in range(len(performance_measures)):
-                overall_performance[performance_measures[i]] = float(overall_prediction_errors[i])
-            df = pd.concat([df, overall_performance], ignore_index=True)
+                overall_performance[performance_measures[i]] = [float(overall_prediction_errors[i])]
+                
+            df = pd.concat([df, pd.DataFrame(overall_performance)], ignore_index=True)
             
             df.to_csv(performance_file_name, index=False)
     
